@@ -39,6 +39,7 @@ namespace EnglishVkBot.API.Controllers
                     return Ok(_configuration["Config:Confirmation"]);
                 case "message_new":
                 {
+                    var count = 0;
                     var msg = Message.FromJson(new VkResponse(updates.Object));
                     var translatedText = _textTranslator.Translate(msg.Text, "en").Result;
                     
@@ -47,6 +48,14 @@ namespace EnglishVkBot.API.Controllers
                     foreach (var direction in _textTranslator.GetLanguages())
                     {
                         keyboardBuilder.AddButton(direction, direction+"extra", KeyboardButtonColor.Primary);
+                        
+                        if (count >= 4)
+                        {
+                            keyboardBuilder.AddLine();
+                            count = 0;
+                        }
+                            
+                        count++;
                     }
 
                     keyboardBuilder.SetOneTime();
