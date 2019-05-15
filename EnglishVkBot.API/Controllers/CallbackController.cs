@@ -49,7 +49,7 @@ namespace EnglishVkBot.API.Controllers
                     {
                         keyboardBuilder.AddButton(direction, direction+"extra", KeyboardButtonColor.Primary);
                         
-                        if (count >= 4)
+                        if (count >= 8)
                         {
                             keyboardBuilder.AddLine();
                             count = 0;
