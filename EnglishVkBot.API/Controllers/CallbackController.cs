@@ -62,7 +62,7 @@ namespace EnglishVkBot.API.Controllers
                         PeerId = user.Id,
                         Message = $"Салам бродяга {user.FirstName} {user.LastName}"
                     });
-                    
+                    Console.WriteLine($"{user.Id}, {user.FirstName} {user.LastName}");
                     _logger.LogInformation($"{user.Id}, {user.FirstName} {user.LastName}");
                     
                     break;

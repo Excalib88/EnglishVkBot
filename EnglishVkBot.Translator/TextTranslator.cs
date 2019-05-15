@@ -21,7 +21,6 @@ namespace EnglishVkBot.Translator
         public async ValueTask<string> Translate(string text, string direction)
         {
             var languageDetector = _translateSdk.DetectLanguage(text).Result;
-            Console.WriteLine($"{languageDetector}-{direction}");
             return await _translateSdk.TranslateText(text, $"{languageDetector}-{direction}");   
         }
 
