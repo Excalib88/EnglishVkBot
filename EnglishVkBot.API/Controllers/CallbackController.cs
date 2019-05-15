@@ -2,6 +2,7 @@ using System;
 using EnglishVkBot.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -13,12 +14,14 @@ namespace EnglishVkBot.API.Controllers
     [ApiController]
     public class CallbackController : ControllerBase
     {
+        private readonly ILogger _logger;
         private readonly IVkApi _vkApi;
         private readonly ITranslator _textTranslator;
         private readonly IConfiguration _configuration;
         
-        public CallbackController(IVkApi vkApi, ITranslator textTranslator, IConfiguration configuration)
+        public CallbackController(ILogger<CallbackController> logger, IVkApi vkApi, ITranslator textTranslator, IConfiguration configuration)
         {
+            _logger = logger;
             _vkApi = vkApi;
             _textTranslator = textTranslator;
             _configuration = configuration;
@@ -37,12 +40,14 @@ namespace EnglishVkBot.API.Controllers
                     var translatedText = _textTranslator.Translate(msg.Text, "en").Result;
 
                     if (msg.PeerId != null)
+                    {
                         _vkApi.Messages.Send(new MessagesSendParams
                         {
                             RandomId = new DateTime().Millisecond,
                             PeerId = msg.PeerId.Value,
                             Message = translatedText
                         });
+                    }
 
                     break;
                 }
@@ -55,8 +60,11 @@ namespace EnglishVkBot.API.Controllers
                     {
                         RandomId = new DateTime().Millisecond,
                         PeerId = user.Id,
-                        Message = $"Салам бродяга {user.FirstName} {user.LastName} {user.City}"
+                        Message = $"Салам бродяга {user.FirstName} {user.LastName}"
                     });
+                    
+                    _logger.LogInformation($"{user.Id}, {user.FirstName} {user.LastName}");
+                    
                     break;
                 }
             }
