@@ -4,8 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.Abstractions",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.Translator", "EnglishVkBot.Translator\EnglishVkBot.Translator.csproj", "{52390EE1-F248-423C-B031-95F8095E0F40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{E207FFED-E803-48A3-A22F-2615D4FB51B3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.API", "EnglishVkBot.API\EnglishVkBot.API.csproj", "{B5040DD2-FF89-4332-97A6-651C11D7222F}"
 EndProject
 Global
@@ -22,10 +20,6 @@ Global
 		{52390EE1-F248-423C-B031-95F8095E0F40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52390EE1-F248-423C-B031-95F8095E0F40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52390EE1-F248-423C-B031-95F8095E0F40}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E207FFED-E803-48A3-A22F-2615D4FB51B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E207FFED-E803-48A3-A22F-2615D4FB51B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E207FFED-E803-48A3-A22F-2615D4FB51B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E207FFED-E803-48A3-A22F-2615D4FB51B3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B5040DD2-FF89-4332-97A6-651C11D7222F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B5040DD2-FF89-4332-97A6-651C11D7222F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5040DD2-FF89-4332-97A6-651C11D7222F}.Release|Any CPU.ActiveCfg = Release|Any CPU
