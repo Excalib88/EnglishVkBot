@@ -55,7 +55,7 @@ namespace EnglishVkBot.API.Controllers
                     {
                         RandomId = new DateTime().Millisecond,
                         PeerId = user.Id,
-                        Message = $"Салам бродяга {user.FirstName}"
+                        Message = $"Салам бродяга {user.FirstName} {user.LastName} {user.City}"
                     });
                     break;
                 }

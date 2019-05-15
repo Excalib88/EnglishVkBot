@@ -13,12 +13,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="VkNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\Users\Excalib\.nuget\packages\vknet\1.43.0\lib\netstandard2.0\VkNet.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\EnglishVkBot.Translator\EnglishVkBot.Translator.csproj" />
     </ItemGroup>
 
