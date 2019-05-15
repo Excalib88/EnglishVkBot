@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Projects\EnglishVkBot" t="IncludeFlat">
+    <e p="C:\Users\123\.Rider2019.1\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\123\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_EnglishVkBot.-1466807610.00" t="ExcludeRecursive" />
+    <e p="C:\zrnc\EnglishVkBot" t="IncludeFlat">
       <e p="EnglishVkBot.Abstractions" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="EnglishVkBot.Abstractions.csproj" t="IncludeRecursive" />
+        <e p="ITranslator.cs" t="Include" />
         <e p="Models" t="Include">
           <e p="Direction.cs" t="Include" />
           <e p="User.cs" t="Include" />
@@ -71,7 +74,5 @@
         <e p="Translator.db" t="Include" />
       </e>
     </e>
-    <e p="C:\Users\Excalib\.Rider2019.1\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Excalib\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_EnglishVkBot.-547379565.00" t="ExcludeRecursive" />
   </component>
 </project>

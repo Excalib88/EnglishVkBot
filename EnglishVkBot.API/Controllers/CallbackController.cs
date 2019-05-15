@@ -1,5 +1,5 @@
 using System;
-using EnglishVkBot.Abstractions.Models;
+using EnglishVkBot.Abstractions;
 using EnglishVkBot.Translator;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -14,15 +14,15 @@ namespace EnglishVkBot.API.Controllers
     [ApiController]
     public class CallbackController : ControllerBase
     {
-        private readonly IConfiguration _configuration;
         private readonly IVkApi _vkApi;
-        private readonly TextTranslator _textTranslator;
+        private readonly ITranslator _textTranslator;
+        private readonly IConfiguration _configuration;
         
-        public CallbackController(IVkApi vkApi, IConfiguration configuration)
+        public CallbackController(IVkApi vkApi, ITranslator textTranslator, IConfiguration configuration)
         {
             _vkApi = vkApi;
+            _textTranslator = textTranslator;
             _configuration = configuration;
-            _textTranslator = new TextTranslator(_configuration["Config:YandexAccessToken"]);
         }
 
         [HttpPost]
@@ -35,7 +35,7 @@ namespace EnglishVkBot.API.Controllers
                 case "message_new":
                 {
                     var msg = Message.FromJson(new VkResponse(updates.Object));
-                    var translatedText = _textTranslator.Translate(msg.Text, "ru-en").Result;
+                    var translatedText = _textTranslator.Translate(msg.Text, "en").Result;
 
                     if (msg.PeerId != null)
                         _vkApi.Messages.Send(new MessagesSendParams
@@ -45,6 +45,19 @@ namespace EnglishVkBot.API.Controllers
                             Message = translatedText
                         });
 
+                    break;
+                }
+
+                case "group_join":
+                {
+                    var user = UserOrGroup.FromJson(new VkResponse(updates.Object));
+                    
+                    _vkApi.Messages.Send(new MessagesSendParams
+                    {
+                        RandomId = new DateTime().Millisecond,
+                        PeerId = user.Users[0].Id,
+                        Message = $"Салам бродяга {user.Users[0].FirstName}"
+                    });
                     break;
                 }
             }

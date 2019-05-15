@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using EnglishVkBot.Abstractions;
 using EnglishVkBot.Abstractions.Models;
 using YandexTranslateCSharpSdk;
 
 namespace EnglishVkBot.Translator
 {
-    public class TextTranslator
+    public class TextTranslator: ITranslator
     {
         private readonly YandexTranslateSdk _translateSdk;
         private readonly List<ValueTuple<User, string>> _translatedTexts;
@@ -19,7 +20,18 @@ namespace EnglishVkBot.Translator
 
         public async ValueTask<string> Translate(string text, string direction)
         {
-            return await _translateSdk.TranslateText(text, direction);   
+            var languageDetector = _translateSdk.DetectLanguage(text).Result;
+            Console.WriteLine($"{languageDetector}-{direction}");
+            return await _translateSdk.TranslateText(text, $"{languageDetector}-{direction}");   
+        }
+
+        public void GetLanguages()
+        {
+            var languages = _translateSdk.GetLanguages().Result;
+            foreach (var language in languages)
+            {
+                //Console.WriteLine(language);
+            }
         }
         
     }

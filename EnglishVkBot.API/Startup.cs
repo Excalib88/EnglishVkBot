@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EnglishVkBot.Abstractions;
+using EnglishVkBot.Translator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +37,7 @@ namespace EnglishVkBot.API
                 api.Authorize(new ApiAuthParams{ AccessToken = Configuration["Config:VkAccessToken"] });
                 return api;
             });
+            services.AddSingleton<ITranslator>(sp => new TextTranslator(Configuration["Config:YandexAccessToken"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
