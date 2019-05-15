@@ -45,18 +45,19 @@ namespace EnglishVkBot.API.Controllers
                     
                     var keyboardBuilder = new KeyboardBuilder();
 
-                    foreach (var direction in _textTranslator.GetLanguages())
+                    var languages = _textTranslator.GetLanguages();
+                    
+                    for (var k = 1; k < 5; k++)
                     {
-                        keyboardBuilder.AddButton(direction, direction+"extra", KeyboardButtonColor.Primary);
-                        
-                        if (count >= 8)
+                        for (var i = 1; i < 5; i++)
                         {
-                            keyboardBuilder.AddLine();
-                            count = 0;
+                            keyboardBuilder.AddButton(languages[count], languages[count] + "extra", KeyboardButtonColor.Primary);
+                            count++;
                         }
-                            
-                        count++;
+                        
+                        keyboardBuilder.AddLine();
                     }
+                    
 
                     keyboardBuilder.SetOneTime();
                     var keyboard = keyboardBuilder.Build();
