@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
+using VkNet.Model.Keyboard;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
@@ -39,14 +41,23 @@ namespace EnglishVkBot.API.Controllers
                 {
                     var msg = Message.FromJson(new VkResponse(updates.Object));
                     var translatedText = _textTranslator.Translate(msg.Text, "en").Result;
+                    
+                    var keyboardBuilder = new KeyboardBuilder();
 
+                    keyboardBuilder.AddButton("Английский", "en", KeyboardButtonColor.Positive);
+                    keyboardBuilder.AddButton("Русский", "ru", KeyboardButtonColor.Positive);
+                    keyboardBuilder.SetOneTime();
+                    
+                    var keyboard = keyboardBuilder.Build();
+                    
                     if (msg.PeerId != null)
                     {
                         _vkApi.Messages.Send(new MessagesSendParams
                         {
                             RandomId = new DateTime().Millisecond,
                             PeerId = msg.PeerId.Value,
-                            Message = translatedText
+                            Message = translatedText,
+                            Keyboard = keyboard
                         });
                     }
 
