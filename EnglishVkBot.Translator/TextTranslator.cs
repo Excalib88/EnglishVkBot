@@ -24,13 +24,9 @@ namespace EnglishVkBot.Translator
             return await _translateSdk.TranslateText(text, $"{languageDetector}-{direction}");   
         }
 
-        public void GetLanguages()
+        public List<string> GetLanguages()
         {
-            var languages = _translateSdk.GetLanguages().Result;
-            foreach (var language in languages)
-            {
-                //Console.WriteLine(language);
-            }
+            return _translateSdk.GetLanguages().Result;
         }
         
     }

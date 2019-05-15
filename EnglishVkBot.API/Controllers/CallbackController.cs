@@ -44,10 +44,12 @@ namespace EnglishVkBot.API.Controllers
                     
                     var keyboardBuilder = new KeyboardBuilder();
 
-                    keyboardBuilder.AddButton("Английский", "en", KeyboardButtonColor.Positive);
-                    keyboardBuilder.AddButton("Русский", "ru", KeyboardButtonColor.Positive);
+                    foreach (var direction in _textTranslator.GetLanguages())
+                    {
+                        keyboardBuilder.AddButton(direction, direction+"extra", KeyboardButtonColor.Primary);
+                    }
+
                     keyboardBuilder.SetOneTime();
-                    
                     var keyboard = keyboardBuilder.Build();
                     
                     if (msg.PeerId != null)

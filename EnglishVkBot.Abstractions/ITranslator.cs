@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace EnglishVkBot.Abstractions
@@ -5,6 +6,6 @@ namespace EnglishVkBot.Abstractions
     public interface ITranslator
     {
         ValueTask<string> Translate(string text, string direction);
-        void GetLanguages();
+        List<string> GetLanguages();
     }
 }
