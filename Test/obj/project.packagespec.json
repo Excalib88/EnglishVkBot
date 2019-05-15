@@ -1,0 +1,54 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "C:\\Projects\\EnglishVkBot\\Test\\Test.csproj",
+    "projectName": "Test",
+    "projectPath": "C:\\Projects\\EnglishVkBot\\Test\\Test.csproj",
+    "outputPath": "C:\\Projects\\EnglishVkBot\\Test\\obj\\",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.2"
+    ],
+    "sources": {
+      "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+      "https://api.nuget.org/v3/index.json": {}
+    },
+    "frameworks": {
+      "netcoreapp2.2": {
+        "projectReferences": {
+          "C:\\Projects\\EnglishVkBot\\EnglishVkBot.API\\EnglishVkBot.API.csproj": {
+            "projectPath": "C:\\Projects\\EnglishVkBot\\EnglishVkBot.API\\EnglishVkBot.API.csproj"
+          },
+          "C:\\Projects\\EnglishVkBot\\EnglishVkBot.Translator\\EnglishVkBot.Translator.csproj": {
+            "projectPath": "C:\\Projects\\EnglishVkBot\\EnglishVkBot.Translator\\EnglishVkBot.Translator.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.2": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.2.0, )",
+          "autoReferenced": true
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

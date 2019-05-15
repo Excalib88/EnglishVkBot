@@ -1,0 +1,12 @@
+C:\Projects\EnglishVkBot\EnglishVkBot.Translator\bin\Debug\netcoreapp2.2\EnglishVkBot.Translator.deps.json
+C:\Projects\EnglishVkBot\EnglishVkBot.Translator\bin\Debug\netcoreapp2.2\EnglishVkBot.Translator.dll
+C:\Projects\EnglishVkBot\EnglishVkBot.Translator\bin\Debug\netcoreapp2.2\EnglishVkBot.Translator.pdb
+C:\Projects\EnglishVkBot\EnglishVkBot.Translator\obj\Debug\netcoreapp2.2\EnglishVkBot.Translator.csprojAssemblyReference.cache
+C:\Projects\EnglishVkBot\EnglishVkBot.Translator\obj\Debug\netcoreapp2.2\EnglishVkBot.Translator.csproj.CoreCompileInputs.cache
+C:\Projects\EnglishVkBot\EnglishVkBot.Translator\obj\Debug\netcoreapp2.2\EnglishVkBot.Translator.AssemblyInfoInputs.cache
+C:\Projects\EnglishVkBot\EnglishVkBot.Translator\obj\Debug\netcoreapp2.2\EnglishVkBot.Translator.AssemblyInfo.cs
+C:\Projects\EnglishVkBot\EnglishVkBot.Translator\obj\Debug\netcoreapp2.2\EnglishVkBot.Translator.dll
+C:\Projects\EnglishVkBot\EnglishVkBot.Translator\obj\Debug\netcoreapp2.2\EnglishVkBot.Translator.pdb
+C:\Projects\EnglishVkBot\EnglishVkBot.Translator\bin\Debug\netcoreapp2.2\EnglishVkBot.Abstractions.dll
+C:\Projects\EnglishVkBot\EnglishVkBot.Translator\bin\Debug\netcoreapp2.2\EnglishVkBot.Abstractions.pdb
+C:\Projects\EnglishVkBot\EnglishVkBot.Translator\obj\Debug\netcoreapp2.2\EnglishVkBot.Translator.csproj.CopyComplete

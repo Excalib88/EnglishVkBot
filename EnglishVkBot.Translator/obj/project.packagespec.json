@@ -1,0 +1,63 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "C:\\Projects\\EnglishVkBot\\EnglishVkBot.Translator\\EnglishVkBot.Translator.csproj",
+    "projectName": "EnglishVkBot.Translator",
+    "projectPath": "C:\\Projects\\EnglishVkBot\\EnglishVkBot.Translator\\EnglishVkBot.Translator.csproj",
+    "outputPath": "C:\\Projects\\EnglishVkBot\\EnglishVkBot.Translator\\obj\\",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.2"
+    ],
+    "sources": {
+      "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+      "https://api.nuget.org/v3/index.json": {}
+    },
+    "frameworks": {
+      "netcoreapp2.2": {
+        "projectReferences": {
+          "C:\\Projects\\EnglishVkBot\\EnglishVkBot.Abstractions\\EnglishVkBot.Abstractions.csproj": {
+            "projectPath": "C:\\Projects\\EnglishVkBot\\EnglishVkBot.Abstractions\\EnglishVkBot.Abstractions.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.2": {
+      "dependencies": {
+        "Microsoft.EntityFrameworkCore.Sqlite": {
+          "target": "Package",
+          "version": "[2.2.4, )"
+        },
+        "Microsoft.EntityFrameworkCore.Sqlite.Core": {
+          "target": "Package",
+          "version": "[2.2.4, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.2.0, )",
+          "autoReferenced": true
+        },
+        "YandexTranslateCoreSdk": {
+          "target": "Package",
+          "version": "[1.0.0, )"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}
