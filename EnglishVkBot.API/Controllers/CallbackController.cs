@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using EnglishVkBot.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -54,12 +55,13 @@ namespace EnglishVkBot.API.Controllers
 
                 case "group_join":
                 {
-                    var user = VkNet.Model.User.FromJson(new VkResponse(updates.Object));
+                    var userId = VkNet.Model.User.FromJson(new VkResponse(updates.Object)).Id;
+                    var user = _vkApi.Users.Get(new[] {userId}).FirstOrDefault();
                     
                     _vkApi.Messages.Send(new MessagesSendParams
                     {
                         RandomId = new DateTime().Millisecond,
-                        PeerId = user.Id,
+                        PeerId = userId,
                         Message = $"Салам бродяга {user.FirstName} {user.LastName}"
                     });
                     Console.WriteLine($"{user.Id}, {user.FirstName} {user.LastName}");
