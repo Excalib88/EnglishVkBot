@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EnglishVkBot.Abstractions;
 using EnglishVkBot.Abstractions.Models;
+using Microsoft.EntityFrameworkCore.Storage;
 using YandexTranslateCSharpSdk;
 
 namespace EnglishVkBot.Translator
@@ -28,6 +29,5 @@ namespace EnglishVkBot.Translator
         {
             return _translateSdk.GetLanguages().Result;
         }
-        
     }
 }
