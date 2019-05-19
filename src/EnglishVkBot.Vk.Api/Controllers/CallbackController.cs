@@ -1,17 +1,16 @@
 using System;
 using System.Linq;
-using EnglishVkBot.Abstractions;
+using EnglishVkBot.Vk.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions;
-using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.Keyboard;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
-namespace EnglishVkBot.API.Controllers
+namespace EnglishVkBot.Vk.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -19,14 +18,13 @@ namespace EnglishVkBot.API.Controllers
     {
         private readonly ILogger _logger;
         private readonly IVkApi _vkApi;
-        private readonly ITranslator _textTranslator;
+        //private readonly ITranslator _textTranslator;
         private readonly IConfiguration _configuration;
         
-        public CallbackController(ILogger<CallbackController> logger, IVkApi vkApi, ITranslator textTranslator, IConfiguration configuration)
+        public CallbackController(ILogger<CallbackController> logger, IVkApi vkApi, IConfiguration configuration)
         {
             _logger = logger;
             _vkApi = vkApi;
-            _textTranslator = textTranslator;
             _configuration = configuration;
         }
 
@@ -41,17 +39,17 @@ namespace EnglishVkBot.API.Controllers
                 {
                     var count = 0;
                     var msg = Message.FromJson(new VkResponse(updates.Object));
-                    var translatedText = _textTranslator.Translate(msg.Text, "en").Result;
-                    
+                    //var translatedText = _textTranslator.Translate(msg.Text, "en").Result;
+                    var translatedText = "";
                     var keyboardBuilder = new KeyboardBuilder();
 
-                    var languages = _textTranslator.GetLanguages();
+                    //var languages = _textTranslator.GetLanguages();
                     
                     for (var k = 1; k < 5; k++)
                     {
                         for (var i = 1; i < 5; i++)
                         {
-                            keyboardBuilder.AddButton(languages[count], languages[count] + "extra", KeyboardButtonColor.Primary);
+                            //keyboardBuilder.AddButton(languages[count], languages[count] + "extra", KeyboardButtonColor.Primary);
                             count++;
                         }
                         

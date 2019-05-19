@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace EnglishVkBot.API.Controllers
+namespace EnglishVkBot.Vk.Api.Models
 {
     [Serializable]
     public class Updates
