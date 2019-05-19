@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.Abstractions", "EnglishVkBot.Abstractions\EnglishVkBot.Abstractions.csproj", "{EF74903A-61AF-42B4-895D-C02FC49921A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.Abstractions", "src\EnglishVkBot.Abstractions\EnglishVkBot.Abstractions.csproj", "{EF74903A-61AF-42B4-895D-C02FC49921A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.Translator", "EnglishVkBot.Translator\EnglishVkBot.Translator.csproj", "{52390EE1-F248-423C-B031-95F8095E0F40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.Translator", "src\EnglishVkBot.Translator\EnglishVkBot.Translator.csproj", "{52390EE1-F248-423C-B031-95F8095E0F40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.API", "EnglishVkBot.API\EnglishVkBot.API.csproj", "{B5040DD2-FF89-4332-97A6-651C11D7222F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.API", "src\EnglishVkBot.API\EnglishVkBot.API.csproj", "{B5040DD2-FF89-4332-97A6-651C11D7222F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 using VkNet;
 using VkNet.Abstractions;
 using VkNet.Model;
@@ -30,7 +31,15 @@ namespace EnglishVkBot.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "Test API",
+                    Description = "ASP.NET Core Web API"
+                });
+            });
             services.AddSingleton<IVkApi>(sp => {
                 var api = new VkApi();
                 api.Authorize(new ApiAuthParams{ AccessToken = Configuration["Config:VkAccessToken"] });
@@ -50,8 +59,11 @@ namespace EnglishVkBot.API
                 app.UseHsts();
             }
             
-            loggerFactory.AddConsole();
-            
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Test API V1");
+            });
             app.UseHttpsRedirection();
             app.UseMvc();
         }
