@@ -1,4 +1,5 @@
 using AutoMapper;
+using EnglishVkBot.Domain.Commands;
 using EnglishVkBot.Domain.Queries.LanguageDirections;
 using Microsoft.Extensions.DependencyInjection;
 using Zarnitza.CQRS;
@@ -10,7 +11,7 @@ namespace EnglishVkBot.Domain
     		public static void AddDomain(this IServiceCollection serviceCollection)
     		{
     			serviceCollection.BindMapper();
-    			serviceCollection.AddCqrs(typeof(GetLanguageByIdQuery));
+    			serviceCollection.AddCqrs(typeof(CreateLanguageDirectionCommand));
     		}
     
     		private static void BindMapper(this IServiceCollection serviceCollection)

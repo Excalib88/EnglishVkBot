@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using EnglishVkBot.Domain.Commands;
 using EnglishVkBot.Domain.Models;
 using EnglishVkBot.Domain.Queries.LanguageDirections;
 using Microsoft.AspNetCore.Mvc;
@@ -28,13 +29,27 @@ namespace EnglishVkBot.API.Controllers
         /// <summary>
         /// GET: api/Translator/GetLanguageById/1
         /// </summary>
-        [Route("GetLanguageById/{directionId}")]
         [HttpGet]
+        [Route("GetLanguageById/{directionId}")]
         public async Task<ActionResult<IEnumerable<LanguageDirection>>> GetLanguageById(int directionId)
         {
-            var directions = await queryBus.Query<GetLanguageByIdQuery, Task<IEnumerable<LanguageDirection>>>(new GetLanguageByIdQuery(directionId));
+            var directions = await queryBus.Query<GetLanguageByIdQuery, Task<IEnumerable<LanguageDirection>>>(
+                new GetLanguageByIdQuery(directionId));
 
             return directions.ToArray();
+        }
+
+        /// <summary>
+        /// POST: api/Translator/AddLanguage
+        /// </summary>
+        /// <param name="languageDirection"></param>
+        [Route("AddLanguage/")]
+        [HttpPost]
+        public ActionResult<int> AddLanguage(LanguageDirection languageDirection)
+        {
+            var languageDirectionId = commandBus.Handle<CreateLanguageDirectionCommand, int>(
+                mapper.Map<CreateLanguageDirectionCommand>(languageDirection));
+            return languageDirectionId;
         }
         
         /// <summary>

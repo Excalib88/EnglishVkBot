@@ -17,6 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\EnglishVkBot.DataAccess\EnglishVkBot.DataAccess.csproj" />
       <ProjectReference Include="..\..\EnglishVkBot.Domain\EnglishVkBot.Domain.csproj" />
       <ProjectReference Include="..\EnglishVkBot.Domain.Models\EnglishVkBot.Domain.Models.csproj" />
       <ProjectReference Include="..\EnglishVkBot.Translator\EnglishVkBot.Translator.csproj" />
