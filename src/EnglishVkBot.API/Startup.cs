@@ -1,4 +1,5 @@
 ﻿using EnglishVkBot.Abstractions;
+using EnglishVkBot.Domain;
 using EnglishVkBot.Translator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,8 @@ namespace EnglishVkBot.API
                     Description = "ASP.NET Core Web API"
                 });
             });
+
+            services.AddDomain();
 
             services.AddSingleton<ITranslator>(sp => new TextTranslator(Configuration["Config:YandexAccessToken"]));
         }

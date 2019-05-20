@@ -1,5 +1,12 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
+using EnglishVkBot.Domain.Models;
+using EnglishVkBot.Domain.Queries.LanguageDirections;
 using Microsoft.AspNetCore.Mvc;
+using Zarnitza.CQRS;
 
 namespace EnglishVkBot.API.Controllers
 {
@@ -7,16 +14,15 @@ namespace EnglishVkBot.API.Controllers
     [ApiController] 
     public class TranslatorController : ControllerBase
     {
-        /// <summary>
-        /// POST: api/Translator/Translate
-        /// </summary>
-        /// <param name="text"></param>
-        /// <param name="direction"></param>
-        [Route("Translate")]
-        [HttpPost]
-        public IActionResult Translate([FromBody] string text, [FromBody] string direction)
+        private readonly IQueryBus queryBus;
+        private readonly ICommandBus commandBus;
+        private readonly IMapper mapper;
+
+        public TranslatorController(IQueryBus queryBus, ICommandBus commandBus, IMapper mapper)
         {
-            return Ok("ok");
+            this.queryBus = queryBus;
+            this.commandBus = commandBus;
+            this.mapper = mapper;
         }
         
         /// <summary>
@@ -24,9 +30,23 @@ namespace EnglishVkBot.API.Controllers
         /// </summary>
         [Route("GetLanguageById/{directionId}")]
         [HttpGet]
-        public IActionResult GetLanguageById(int directionId)
+        public async Task<ActionResult<IEnumerable<LanguageDirection>>> GetLanguageById(int directionId)
         {
-            return Ok();
+            var directions = await queryBus.Query<GetLanguageByIdQuery, Task<IEnumerable<LanguageDirection>>>(new GetLanguageByIdQuery(directionId));
+
+            return directions.ToArray();
+        }
+        
+        /// <summary>
+        /// POST: api/Translator/Translate
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="direction"></param>
+        [Route("Translate")]
+        [HttpPost]
+        public IActionResult Translate([FromBody] string text, string direction)
+        {
+            return Ok("ok");
         }
 
         /// <summary>
@@ -36,8 +56,7 @@ namespace EnglishVkBot.API.Controllers
         [Route("GetLanguagesList")]
         public ActionResult<IEnumerable<dynamic>> GetLanguagesList()
         {
-            var languages = new List<dynamic>();
-            
+            var languages = new List<IEnumerable<dynamic>>();
             return languages;
         }
     }
