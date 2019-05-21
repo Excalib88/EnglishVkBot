@@ -27,16 +27,25 @@ namespace EnglishVkBot.API.Controllers
         }
         
         /// <summary>
+        /// GET: api/Translator/GetLanguagesList/
+        /// </summary>
+        [HttpGet]
+        [Route("GetLanguagesList")]
+        public async Task<ActionResult<IEnumerable<LanguageDirection>>> GetLanguagesList()
+        {
+            var sessions = await queryBus.Query<Task<IEnumerable<LanguageDirection>>>();
+            return sessions.ToArray();
+        }
+        
+        /// <summary>
         /// GET: api/Translator/GetLanguageById/1
         /// </summary>
         [HttpGet]
         [Route("GetLanguageById/{directionId}")]
-        public async Task<ActionResult<IEnumerable<LanguageDirection>>> GetLanguageById(int directionId)
+        public async Task<ActionResult<LanguageDirection>> GetLanguageById(int directionId)
         {
-            var directions = await queryBus.Query<GetLanguageByIdQuery, Task<IEnumerable<LanguageDirection>>>(
-                new GetLanguageByIdQuery(directionId));
-
-            return directions.ToArray();
+            var direction = await queryBus.Query<GetLanguageByIdQuery, Task<LanguageDirection>>(new GetLanguageByIdQuery(directionId));
+            return direction;
         }
 
         /// <summary>
@@ -62,17 +71,6 @@ namespace EnglishVkBot.API.Controllers
         public IActionResult Translate([FromBody] string text, string direction)
         {
             return Ok("ok");
-        }
-
-        /// <summary>
-        /// GET: api/Translator/GetLanguagesList/
-        /// </summary>
-        [HttpGet]
-        [Route("GetLanguagesList")]
-        public ActionResult<IEnumerable<dynamic>> GetLanguagesList()
-        {
-            var languages = new List<IEnumerable<dynamic>>();
-            return languages;
         }
     }
 }

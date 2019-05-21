@@ -31,8 +31,6 @@ namespace EnglishVkBot.API
             services.AddDbContext();
             //services.AddCqrs(typeof(CreateLanguageDirectionCommand));
             services.AddDomain();
-            services.AddScoped<IMapper>(p => new Mapper(Mapper.Configuration));
-            
             
             services.AddSwaggerGen(c =>
             {
@@ -44,6 +42,7 @@ namespace EnglishVkBot.API
                 });
             });
         
+            services.AddCors();
             services.AddSingleton<ITranslator>(sp => new TextTranslator(Configuration["Config:YandexAccessToken"]));
         }
 
@@ -59,6 +58,12 @@ namespace EnglishVkBot.API
             {
                 app.UseHsts();
             }
+            
+            app.UseCors(b => {
+                b.AllowAnyOrigin();
+                b.AllowAnyMethod();
+                b.AllowAnyHeader();
+            });
             
             app.UseSwagger();
             app.UseSwaggerUI(c =>

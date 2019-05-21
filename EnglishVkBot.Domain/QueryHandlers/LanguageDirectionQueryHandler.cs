@@ -11,23 +11,21 @@ using Zarnitza.CQRS;
 
 namespace EnglishVkBot.Domain.QueryHandlers
 {
-    public class LanguageDirectionsQueryHandler : QueryHandler<LanguageDirection>,
-        IQueryHandler<GetLanguageByIdQuery, IEnumerable<LanguageDirection>>,
-        IQueryHandler<GetLanguageByIdQuery, Task<IEnumerable<LanguageDirection>>>
+    public class LanguageDirectionsQueryHandler : QueryHandler<LanguageDirection>, 
+        IQueryHandler<IEnumerable<LanguageDirection>>
     {
         public LanguageDirectionsQueryHandler(IDataContext dataContext, IMapper mapper) : base(dataContext, mapper)
         {
         }
-
-        public async Task<IEnumerable<LanguageDirection>> Ask(GetLanguageByIdQuery spec)
+        
+        public async Task<LanguageDirection> Ask(GetLanguageByIdQuery spec)
         {
-            return await DbSet.Include(languageDirection => languageDirection.Id == spec.Id).ToListAsync();
+            return await DbSet.Where(d => d.Id == spec.Id).FirstOrDefaultAsync();
         }
 
-        IEnumerable<LanguageDirection> IQueryHandler<GetLanguageByIdQuery, IEnumerable<LanguageDirection>>.Ask(
-            GetLanguageByIdQuery spec)
+        IEnumerable<LanguageDirection> IQueryHandler<IEnumerable<LanguageDirection>>.Ask()
         {
-            return DbSet.Where(s => s.Id == spec.Id).ToList();
+            return DbSet.ToList();
         }
     }
 }
