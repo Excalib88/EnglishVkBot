@@ -1,11 +1,23 @@
-﻿using EnglishVkBot.Abstractions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
+using EnglishVkBot.Abstractions;
+using EnglishVkBot.Domain;
 using EnglishVkBot.Translator;
+using EnglishVkBot.DataAccess;
+using EnglishVkBot.Domain.Commands;
+using EnglishVkBot.Domain.Models;
+using EnglishVkBot.Domain.Queries.LanguageDirections;
+using EnglishVkBot.Domain.QueryHandlers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using Zarnitza.CQRS;
 
 namespace EnglishVkBot.API
 {
@@ -20,7 +32,14 @@ namespace EnglishVkBot.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+            services.AddDbContext();
+            services.AddCqrs(typeof(CreateLanguageDirectionCommand), typeof(GetLanguageByIdQuery),
+                typeof(DataContext));
+           
+            Mapper.Initialize(cfg => { cfg.AddProfiles(typeof(CreateLanguageDirectionCommand).Assembly); });
+            services.AddScoped<IMapper>(p => new Mapper(Mapper.Configuration));
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info
@@ -30,12 +49,23 @@ namespace EnglishVkBot.API
                     Description = "ASP.NET Core Web API"
                 });
             });
-
+        
+            services.AddCors();
             services.AddSingleton<ITranslator>(sp => new TextTranslator(Configuration["Config:YandexAccessToken"]));
+//            
+//            var a = services.BuildServiceProvider();
+//            var qh = a.GetService<IQueryHandler<IEnumerable<LanguageDirection>>>();
+//            foreach (var item in qh.Ask())
+//            {
+//                var direction = item.Direction;
+//                var name = item.Name;
+//            }
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
+            serviceProvider.GetService<DataContext>().Database.Migrate();
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -45,10 +75,17 @@ namespace EnglishVkBot.API
                 app.UseHsts();
             }
             
+            app.UseCors(b => {
+                b.AllowAnyOrigin();
+                b.AllowAnyMethod();
+                b.AllowAnyHeader();
+            });
+            
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Translator API V1");
+                c.RoutePrefix = string.Empty;
             });
             app.UseHttpsRedirection();
             app.UseMvc();
