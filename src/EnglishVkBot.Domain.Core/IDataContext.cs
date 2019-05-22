@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace EnglishVkBot.Domain
+namespace EnglishVkBot.Domain.Core
 {
     public interface IDataContext : IDisposable
     {

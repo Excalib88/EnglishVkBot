@@ -1,4 +1,5 @@
 using EnglishVkBot.Domain;
+using EnglishVkBot.Domain.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

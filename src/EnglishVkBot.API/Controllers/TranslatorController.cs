@@ -42,9 +42,10 @@ namespace EnglishVkBot.API.Controllers
         /// </summary>
         [HttpGet]
         [Route("GetLanguageById/{directionId}")]
-        public async Task<ActionResult<LanguageDirection>> GetLanguageById(int directionId)
+        public ActionResult<LanguageDirection> GetLanguageById(int directionId)
         {
-            var direction = await queryBus.Query<GetLanguageByIdQuery, Task<LanguageDirection>>(new GetLanguageByIdQuery(directionId));
+            var direction = queryBus.Query<GetLanguageByIdQuery, LanguageDirection>(
+                new GetLanguageByIdQuery(directionId));
             return direction;
         }
 

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using AutoMapper;
 using EnglishVkBot.Domain.Core;
@@ -11,21 +11,29 @@ using Zarnitza.CQRS;
 
 namespace EnglishVkBot.Domain.QueryHandlers
 {
-    public class LanguageDirectionsQueryHandler : QueryHandler<LanguageDirection>, 
-        IQueryHandler<IEnumerable<LanguageDirection>>
+    public class LanguageDirectionsQueryHandler : QueryHandler<LanguageDirection>,
+        IQueryHandler<Task<IEnumerable<LanguageDirection>>>,
+        IQueryHandler<GetLanguageByIdQuery, LanguageDirection>
     {
         public LanguageDirectionsQueryHandler(IDataContext dataContext, IMapper mapper) : base(dataContext, mapper)
         {
         }
         
-        public async Task<LanguageDirection> Ask(GetLanguageByIdQuery spec)
+//        public async Task<IEnumerable<LanguageDirection>> Ask(GetLanguageByIdQuery spec)
+//        {
+//            return await DbSet.Where(d => d.Id == spec.Id).ToListAsync();
+//        }
+        
+        Task<IEnumerable<LanguageDirection>> IQueryHandler<Task<IEnumerable<LanguageDirection>>>.Ask()
         {
-            return await DbSet.Where(d => d.Id == spec.Id).FirstOrDefaultAsync();
+            return Task.FromResult<IEnumerable<LanguageDirection>>(DbSet.ToList());
         }
 
-        IEnumerable<LanguageDirection> IQueryHandler<IEnumerable<LanguageDirection>>.Ask()
+
+        public LanguageDirection Ask(GetLanguageByIdQuery spec)
         {
-            return DbSet.ToList();
+            var a = DbSet.FirstOrDefault(d => d.Id == spec.Id);
+            return a;
         }
     }
 }

@@ -1,3 +1,5 @@
+using EnglishVkBot.Domain.Core;
+
 namespace EnglishVkBot.Domain.Queries.LanguageDirections
 {
     public class GetLanguageByIdQuery
@@ -6,7 +8,7 @@ namespace EnglishVkBot.Domain.Queries.LanguageDirections
 
         public GetLanguageByIdQuery(int id)
         {
-            Id = Id;
+            Id = id;
         }
     }
 }

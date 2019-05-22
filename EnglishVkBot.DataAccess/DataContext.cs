@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using EnglishVkBot.Domain;
+using EnglishVkBot.Domain.Core;
 using EnglishVkBot.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
