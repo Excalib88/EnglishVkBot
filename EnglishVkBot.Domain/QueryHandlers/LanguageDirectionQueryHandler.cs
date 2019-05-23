@@ -18,12 +18,7 @@ namespace EnglishVkBot.Domain.QueryHandlers
         public LanguageDirectionsQueryHandler(IDataContext dataContext, IMapper mapper) : base(dataContext, mapper)
         {
         }
-        
-//        public async Task<IEnumerable<LanguageDirection>> Ask(GetLanguageByIdQuery spec)
-//        {
-//            return await DbSet.Where(d => d.Id == spec.Id).ToListAsync();
-//        }
-        
+
         Task<IEnumerable<LanguageDirection>> IQueryHandler<Task<IEnumerable<LanguageDirection>>>.Ask()
         {
             return Task.FromResult<IEnumerable<LanguageDirection>>(DbSet.ToList());
