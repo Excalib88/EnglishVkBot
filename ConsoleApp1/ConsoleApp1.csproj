@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EnglishVkBot.Domain\EnglishVkBot.Domain.csproj" />
+      <ProjectReference Include="..\src\EnglishVkBot.RestRequests\EnglishVkBot.RestRequests.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -18,6 +18,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.Domain.Core", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.Domain.Models", "src\EnglishVkBot.Domain.Models\EnglishVkBot.Domain.Models.csproj", "{0FA4AC31-FD27-4C7B-956B-0C9859B40B1D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.RestRequests", "src\EnglishVkBot.RestRequests\EnglishVkBot.RestRequests.csproj", "{95C499E5-E51A-4555-9CF4-EFF2A6E473E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{0A5BAF4D-77E1-482E-BDBE-AC32B8E47D0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +60,14 @@ Global
 		{0FA4AC31-FD27-4C7B-956B-0C9859B40B1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FA4AC31-FD27-4C7B-956B-0C9859B40B1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FA4AC31-FD27-4C7B-956B-0C9859B40B1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95C499E5-E51A-4555-9CF4-EFF2A6E473E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95C499E5-E51A-4555-9CF4-EFF2A6E473E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95C499E5-E51A-4555-9CF4-EFF2A6E473E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95C499E5-E51A-4555-9CF4-EFF2A6E473E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A5BAF4D-77E1-482E-BDBE-AC32B8E47D0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A5BAF4D-77E1-482E-BDBE-AC32B8E47D0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A5BAF4D-77E1-482E-BDBE-AC32B8E47D0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A5BAF4D-77E1-482E-BDBE-AC32B8E47D0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1937A19C-568C-4FC6-99EF-AD545B77684B} = {C12F6018-D098-4C81-A181-E5C24DBDAD12}

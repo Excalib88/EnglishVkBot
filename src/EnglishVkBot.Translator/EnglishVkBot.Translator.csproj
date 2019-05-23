@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\EnglishVkBot.Abstractions\EnglishVkBot.Abstractions.csproj" />
+      <ProjectReference Include="..\EnglishVkBot.Domain.Models\EnglishVkBot.Domain.Models.csproj" />
     </ItemGroup>
 
 </Project>

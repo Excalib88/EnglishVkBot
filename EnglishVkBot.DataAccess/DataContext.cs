@@ -10,6 +10,7 @@ namespace EnglishVkBot.DataAccess
     public sealed class DataContext : DbContext, IDataContext
     {
         public DbSet<LanguageDirection> LanguageDirections { get; set; }
+        public DbSet<TranslateTextDto> TranslatedTexts { get; set; }
         
         public DataContext(DbContextOptions<DataContext> options)
             : base(options){}

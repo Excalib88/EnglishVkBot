@@ -7,6 +7,7 @@ using EnglishVkBot.Domain;
 using EnglishVkBot.Translator;
 using EnglishVkBot.DataAccess;
 using EnglishVkBot.Domain.Commands;
+using EnglishVkBot.Domain.Mappings;
 using EnglishVkBot.Domain.Models;
 using EnglishVkBot.Domain.Queries.LanguageDirections;
 using EnglishVkBot.Domain.QueryHandlers;
@@ -37,7 +38,7 @@ namespace EnglishVkBot.API
             services.AddCqrs(typeof(CreateLanguageDirectionCommand), typeof(GetLanguageByIdQuery),
                 typeof(DataContext));
            
-            Mapper.Initialize(cfg => { cfg.AddProfiles(typeof(CreateLanguageDirectionCommand).Assembly); });
+            Mapper.Initialize(cfg => { cfg.AddProfiles(typeof(TranslateTextProfile).Assembly); });
             services.AddScoped<IMapper>(p => new Mapper(Mapper.Configuration));
             
             services.AddSwaggerGen(c =>
@@ -50,16 +51,10 @@ namespace EnglishVkBot.API
                 });
             });
         
+            
             services.AddCors();
             services.AddSingleton<ITranslator>(sp => new TextTranslator(Configuration["Config:YandexAccessToken"]));
-//            
-//            var a = services.BuildServiceProvider();
-//            var qh = a.GetService<IQueryHandler<IEnumerable<LanguageDirection>>>();
-//            foreach (var item in qh.Ask())
-//            {
-//                var direction = item.Direction;
-//                var name = item.Name;
-//            }
+
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)

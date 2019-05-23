@@ -11,8 +11,7 @@ namespace EnglishVkBot.Domain.Models
         public string Direction { get; private set; }
         
         [JsonConstructor]
-        // Empty constructor for EF
-        private LanguageDirection()
+        public LanguageDirection()
         {
         }
 
