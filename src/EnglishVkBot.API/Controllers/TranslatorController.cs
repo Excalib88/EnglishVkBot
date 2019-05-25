@@ -71,7 +71,7 @@ namespace EnglishVkBot.API.Controllers
         /// <param name="translateTextDto"></param>
         [Route("Translate")]
         [HttpPost]
-        public ActionResult<string> Translate(TranslateTextDto translateTextDto)
+        public ActionResult<string> Translate([FromBody]TranslateTextDto translateTextDto)
         {
             var textDirection = GetLanguageById(translateTextDto.TextDirectionId).Value.Direction;
             var targetDirection = GetLanguageById(translateTextDto.TargetDirectionId).Value.Direction;

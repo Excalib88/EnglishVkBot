@@ -12,7 +12,7 @@ namespace EnglishVkBot.RestRequests
         public TranslateRequest(IRestClient restClient)
         {
             _restClient = restClient;
-            _restClient.BaseUrl = new Uri("https://localhost:44331/");
+            _restClient.BaseUrl = new Uri("http://localhost:5000/");
             //var request = new RestRequest("", Method.POST);
             //var response = RestClient.Execute<LanguageDirection>(request);
         }
@@ -20,8 +20,13 @@ namespace EnglishVkBot.RestRequests
         public void Send(TranslateTextDto translateTextDto)
         {
             var request = new RestRequest("api/Translator/Translate", Method.POST);
+            request.AddHeader("content-type", "application/json-patch+json");
+            request.RequestFormat = DataFormat.Json;
+            request.AddJsonBody(translateTextDto);
+            
             var response = _restClient.Execute<TranslateTextDto>(request);
-            var resultTranslateTextDto = response.Data;
+            
+            Console.WriteLine(response.Content);
         }
     }
 }

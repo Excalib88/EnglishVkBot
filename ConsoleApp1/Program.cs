@@ -12,7 +12,8 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             var request = new TranslateRequest(new RestClient());
-            //request.Send(new CreateTranslateTextCommand("Привет", 2, 1, true));
+            
+            request.Send(new TranslateTextDto("Привет", 1, 2, true));
 
             Console.ReadKey();
         }
