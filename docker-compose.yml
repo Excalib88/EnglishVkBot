@@ -1,0 +1,40 @@
+version: '3.1'
+
+services:
+  id-tuset:
+    build: TusetId
+    image: "registry.gitlab.com/k0dep/tuset/id:${TAG}"
+    restart: always
+    expose:
+      - "5001"
+    command: ["--migrate", "--continue"]
+    depends_on:
+      - postgres
+    environment:
+      ClientAddress: 'https://localhost:5002/'
+      ConnectionStrings__DefaultConnection: 'Server=postgres;Port=5432;Database=IdentityServer;User Id=postgres;Password=postgres;'
+
+  nginx-proxy:
+    image: nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - EnglishVkBot
+      - EnglishVkBot.API
+      - EnglishVkBot.IdentityServer
+    volumes:
+      - './nginx.conf:/etc/nginx/nginx.conf:ro'
+      - './ssl:/etc/nginx/certs:ro'
+  
+  postgres:
+    image: mdillon/postgis
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pg_data:/var/lib/postgresql
+
+volumes:
+  pg_data:

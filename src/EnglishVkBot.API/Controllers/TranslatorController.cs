@@ -37,6 +37,7 @@ namespace EnglishVkBot.API.Controllers
         public async Task<ActionResult<IEnumerable<LanguageDirection>>> GetLanguagesList()
         {
             var sessions = await _queryBus.Query<Task<IEnumerable<LanguageDirection>>>();
+            
             return sessions.ToArray();
         }
         

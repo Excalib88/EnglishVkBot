@@ -1,4 +1,6 @@
 ﻿@using EnglishVkBot.IdentityServer.Models
+@using Microsoft.AspNetCore.Identity.UI.V3.Pages.Account.Manage.Internal
+@using ManageNavPages = EnglishVkBot.IdentityServer.Views.Manage.ManageNavPages
 @inject SignInManager<ApplicationUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
