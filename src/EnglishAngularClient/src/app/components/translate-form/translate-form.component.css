@@ -1,0 +1,10 @@
+.form-container {
+  width: auto;
+}
+
+textarea {
+  height: 20em;
+
+  /* hidden scrollbar for IE */
+  overflow: auto;
+}
