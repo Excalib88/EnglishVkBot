@@ -1,6 +1,6 @@
 namespace EnglishVkBot.Domain.Queries.LanguageDirections
 {
-    public class GetLanguagesList
+    public class GetAllLanguages
     {
         
     }

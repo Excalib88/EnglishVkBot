@@ -9,17 +9,14 @@ import { TranslateService } from 'src/app/services/translate.service';
   styleUrls: ['./translate-form.component.css']
 })
 export class TranslateFormComponent implements OnInit {
-  selectedValue: string;
-  selectedCar: string;
   translationText: string;
   translatedText: string;
   languages: Language[] = [];
+  selectedTranslationLanguage: Language;
+  selectedTranslatedLanguage: Language;
   subscriptions: Subscription[] = [];
 
-  constructor(
-    private translateService: TranslateService,
-
-  ) {}
+  constructor(private translateService: TranslateService) {}
 
   ngOnInit() {
     this.populateGroups();
@@ -27,7 +24,9 @@ export class TranslateFormComponent implements OnInit {
 
   populateGroups() {
     this.subscriptions.push(
-      this.translateService.getAll().subscribe(response => (this.languages = response))
+      this.translateService
+        .getAll()
+        .subscribe(response => (this.languages = response))
     );
   }
 

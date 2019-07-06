@@ -6,26 +6,39 @@
       <div class="select-languages">
         <mat-form-field class="translate-text">
           <mat-label>Select your language</mat-label>
-          <select matNativeControl [(ngModel)]="selectedCar" name="car">
+          <select
+            matNativeControl
+            [(ngModel)]="selectedTranslationLanguage"
+            name="translationLanguage"
+          >
             <option value="" selected></option>
-            <option *ngFor="let car of cars" [value]="car.value">
-              {{ car.viewValue }}
+            <option *ngFor="let language of languages" [value]="language.name">
+              {{ language.name }}
             </option>
           </select>
         </mat-form-field>
         <mat-form-field class="translated-text">
           <mat-label>Select traslation language</mat-label>
-          <select matNativeControl [(ngModel)]="selectedCar" name="car">
+          <select
+            matNativeControl
+            [(ngModel)]="selectedTranslatedLanguage"
+            name="translatedLanguage"
+          >
             <option value="" selected></option>
-            <option *ngFor="let car of cars" [value]="car.value">
-              {{ car.viewValue }}
+            <option *ngFor="let language of languages" [value]="language.name">
+              {{ language.name }}
             </option>
           </select>
         </mat-form-field>
       </div>
     </mat-card-header>
     <mat-card-content class="card-content">
-      <mat-form-field class="form-field" ngDefaultControl [(ngModel)]="translationText" (keyup.enter)="onEnter()">
+      <mat-form-field
+        class="form-field"
+        ngDefaultControl
+        [(ngModel)]="translationText"
+        (keyup.enter)="onEnter()"
+      >
         <textarea
           matInput
           placeholder="Enter your text which need to translate"
@@ -34,7 +47,11 @@
         >
         </textarea>
       </mat-form-field>
-      <mat-form-field class="form-field" ngDefaultControl [(ngModel)]="translatedText">
+      <mat-form-field
+        class="form-field"
+        ngDefaultControl
+        [(ngModel)]="translatedText"
+      >
         <textarea
           matInput
           placeholder="Just press enter or click Translate button on bottom panel"

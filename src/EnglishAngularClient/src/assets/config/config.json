@@ -1,5 +1,6 @@
 {
     "webApiUrls": {
-        "BaseUrl": "http://localhost:5000/api"
+        "BaseUrl": "http://localhost:5002/api",
+        "GetAllLanguages": "/Translator/GetAllLanguages/"
     }
 }

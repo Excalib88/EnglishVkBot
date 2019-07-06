@@ -28,19 +28,19 @@ namespace EnglishVkBot.API.Controllers
             _mapper = mapper;
             _translator = translator;
         }
-        
+
         /// <summary>
-        /// GET: api/Translator/GetLanguagesList/
+        /// GET: api/Translator/GetAllLanguages/
         /// </summary>
         [HttpGet]
-        [Route("GetLanguagesList")]
-        public async Task<ActionResult<IEnumerable<LanguageDirection>>> GetLanguagesList()
+        [Route("GetAllLanguages")]
+        public async Task<ActionResult<IEnumerable<LanguageDirection>>> GetAllLanguages()
         {
-            var sessions = await _queryBus.Query<Task<IEnumerable<LanguageDirection>>>();
-            
-            return sessions.ToArray();
+            var languages = await _queryBus.Query<Task<IEnumerable<LanguageDirection>>>();
+
+            return languages.ToArray();
         }
-        
+
         /// <summary>
         /// GET: api/Translator/GetLanguageById/1
         /// </summary>
