@@ -2,9 +2,40 @@
   width: auto;
 }
 
+.translate-card {
+  border: 2px lightgrey solid;
+  border-radius: 4px;
+}
+
+.select-languages {
+  margin-left: 35em;
+  text-align: center;
+}
+
+.translate-text {
+  margin: 10px;
+}
+
+.translated-text {
+  margin: 10px;
+}
+
 textarea {
   height: 20em;
-
   /* hidden scrollbar for IE */
   overflow: auto;
+}
+
+/* .mat-card-header :hover{
+  border-bottom: 1px lightgrey solid;
+} */
+.card-content {
+  padding: 30px;
+  text-align: center;
+}
+
+.form-field {
+  width: 30em;
+  margin: 10px;
+  font-size: 2em;
 }
