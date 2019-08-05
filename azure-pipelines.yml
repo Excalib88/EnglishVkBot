@@ -1,11 +1,4 @@
 # ASP.NET Core (.NET Framework)
-- task: NuGetCommand@2
-  inputs:
-    command: 'restore'
-    restoreSolution: '**/*.sln'
-    feedsToUse: 'config'
-    nugetConfigPath: 'http://178.205.251.238:8080/nuget'
-    externalFeedCredentials: 'ZarnitzaFeed'
 # Build and test ASP.NET Core projects targeting the full .NET Framework.
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
