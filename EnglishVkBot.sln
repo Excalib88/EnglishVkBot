@@ -1,26 +1,33 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.Abstractions", "src\EnglishVkBot.Abstractions\EnglishVkBot.Abstractions.csproj", "{EF74903A-61AF-42B4-895D-C02FC49921A2}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishVkBot.Abstractions", "src\EnglishVkBot.Abstractions\EnglishVkBot.Abstractions.csproj", "{EF74903A-61AF-42B4-895D-C02FC49921A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.Translator", "src\EnglishVkBot.Translator\EnglishVkBot.Translator.csproj", "{52390EE1-F248-423C-B031-95F8095E0F40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishVkBot.Translator", "src\EnglishVkBot.Translator\EnglishVkBot.Translator.csproj", "{52390EE1-F248-423C-B031-95F8095E0F40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.API", "src\EnglishVkBot.API\EnglishVkBot.API.csproj", "{B5040DD2-FF89-4332-97A6-651C11D7222F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishVkBot.API", "src\EnglishVkBot.API\EnglishVkBot.API.csproj", "{B5040DD2-FF89-4332-97A6-651C11D7222F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.Vk.Api", "src\EnglishVkBot.Vk.Api\EnglishVkBot.Vk.Api.csproj", "{3CA17F91-518C-43B3-8644-A66572BE5441}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishVkBot.Vk.Api", "src\EnglishVkBot.Vk.Api\EnglishVkBot.Vk.Api.csproj", "{3CA17F91-518C-43B3-8644-A66572BE5441}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.Domain", "EnglishVkBot.Domain\EnglishVkBot.Domain.csproj", "{1937A19C-568C-4FC6-99EF-AD545B77684B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishVkBot.Domain", "src\EnglishVkBot.Domain\EnglishVkBot.Domain.csproj", "{1937A19C-568C-4FC6-99EF-AD545B77684B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.DataAccess", "EnglishVkBot.DataAccess\EnglishVkBot.DataAccess.csproj", "{0443FD56-5AA2-4ADA-90B7-5546D302F052}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishVkBot.DataAccess", "src\EnglishVkBot.DataAccess\EnglishVkBot.DataAccess.csproj", "{0443FD56-5AA2-4ADA-90B7-5546D302F052}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{C12F6018-D098-4C81-A181-E5C24DBDAD12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.Domain.Core", "src\EnglishVkBot.Domain.Core\EnglishVkBot.Domain.Core.csproj", "{CC2DC03B-F58D-449B-8405-8E5E54A23E0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishVkBot.Domain.Core", "src\EnglishVkBot.Domain.Core\EnglishVkBot.Domain.Core.csproj", "{CC2DC03B-F58D-449B-8405-8E5E54A23E0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.Domain.Models", "src\EnglishVkBot.Domain.Models\EnglishVkBot.Domain.Models.csproj", "{0FA4AC31-FD27-4C7B-956B-0C9859B40B1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishVkBot.Domain.Models", "src\EnglishVkBot.Domain.Models\EnglishVkBot.Domain.Models.csproj", "{0FA4AC31-FD27-4C7B-956B-0C9859B40B1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.RestRequests", "src\EnglishVkBot.RestRequests\EnglishVkBot.RestRequests.csproj", "{95C499E5-E51A-4555-9CF4-EFF2A6E473E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishVkBot.RestRequests", "src\EnglishVkBot.RestRequests\EnglishVkBot.RestRequests.csproj", "{95C499E5-E51A-4555-9CF4-EFF2A6E473E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishVkBot.IdentityServer", "src\EnglishVkBot.IdentityServer\EnglishVkBot.IdentityServer.csproj", "{E50A0A23-E1D9-4132-B13B-F0AC1FABA48F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishVkBot.IdentityServer", "src\EnglishVkBot.IdentityServer\EnglishVkBot.IdentityServer.csproj", "{E50A0A23-E1D9-4132-B13B-F0AC1FABA48F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{75E27C3D-1412-4C43-968A-B40316307C74}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{A2857D55-58F8-44F5-9D2E-7EE157B44494}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,9 +76,18 @@ Global
 		{E50A0A23-E1D9-4132-B13B-F0AC1FABA48F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E50A0A23-E1D9-4132-B13B-F0AC1FABA48F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{B5040DD2-FF89-4332-97A6-651C11D7222F} = {75E27C3D-1412-4C43-968A-B40316307C74}
+		{3CA17F91-518C-43B3-8644-A66572BE5441} = {75E27C3D-1412-4C43-968A-B40316307C74}
 		{1937A19C-568C-4FC6-99EF-AD545B77684B} = {C12F6018-D098-4C81-A181-E5C24DBDAD12}
 		{CC2DC03B-F58D-449B-8405-8E5E54A23E0C} = {C12F6018-D098-4C81-A181-E5C24DBDAD12}
 		{0FA4AC31-FD27-4C7B-956B-0C9859B40B1D} = {C12F6018-D098-4C81-A181-E5C24DBDAD12}
+		{E50A0A23-E1D9-4132-B13B-F0AC1FABA48F} = {A2857D55-58F8-44F5-9D2E-7EE157B44494}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {89124C9C-B111-4469-A5B1-BFED2082F98D}
 	EndGlobalSection
 EndGlobal

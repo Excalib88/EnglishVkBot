@@ -7,7 +7,6 @@
     <ItemGroup>
       <PackageReference Include="AutoMapper" Version="8.1.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
-      <PackageReference Include="Zarnitza.CQRS" Version="1.2.0" />
     </ItemGroup>
 
     <ItemGroup>
