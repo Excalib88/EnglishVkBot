@@ -1,16 +1,15 @@
 using System.Linq;
 using System.Threading.Tasks;
-using EnglishVkBot.Domain;
-using EnglishVkBot.Domain.Core;
+using EnglishVkBot.DataAccess.Entities;
 using EnglishVkBot.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EnglishVkBot.DataAccess
 {
-    public sealed class DataContext : DbContext, IDataContext
+    public sealed class DataContext : DbContext
     {
         public DbSet<LanguageDirection> LanguageDirections { get; set; }
-        public DbSet<TranslateTextDto> TranslatedTexts { get; set; }
+        public DbSet<TranslateText> TranslatedTexts { get; set; }
         
         public DataContext(DbContextOptions<DataContext> options)
             : base(options){}

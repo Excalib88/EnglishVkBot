@@ -1,8 +1,9 @@
+using EnglishVkBot.DataAccess.Abstractions;
 using Newtonsoft.Json;
 
-namespace EnglishVkBot.Domain.Models
+namespace EnglishVkBot.DataAccess.Entities
 {
-    public class LanguageDirection: Entity
+    public class LanguageDirection: EntityBase
     {
         [JsonProperty]
         public string Name { get; private set; }

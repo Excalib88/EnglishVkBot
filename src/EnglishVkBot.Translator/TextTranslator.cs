@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EnglishVkBot.Abstractions;
 using EnglishVkBot.Abstractions.Models;
-using EnglishVkBot.Domain.Models;
 using YandexTranslateCSharpSdk;
 
 namespace EnglishVkBot.Translator
@@ -19,7 +18,7 @@ namespace EnglishVkBot.Translator
             _translatedTexts = new List<ValueTuple<User, string>>();
         }
 
-        public async ValueTask<string> Translate(
+        public async Task<string> Translate(
             string text, string textDirection, string targetDirection, bool isAutoTextRecognition)
         {   
             if (isAutoTextRecognition)

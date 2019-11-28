@@ -6,11 +6,7 @@ using EnglishVkBot.Abstractions;
 using EnglishVkBot.Domain;
 using EnglishVkBot.Translator;
 using EnglishVkBot.DataAccess;
-using EnglishVkBot.Domain.Commands;
 using EnglishVkBot.Domain.Mappings;
-using EnglishVkBot.Domain.Models;
-using EnglishVkBot.Domain.Queries.LanguageDirections;
-using EnglishVkBot.Domain.QueryHandlers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +14,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
-using Zarnitza.CQRS;
 
 namespace EnglishVkBot.API
 {
@@ -35,10 +30,8 @@ namespace EnglishVkBot.API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
             services.AddDbContext();
-            services.AddCqrs(typeof(CreateLanguageDirectionCommand), typeof(GetLanguageByIdQuery),
-                typeof(DataContext));
            
-            Mapper.Initialize(cfg => { cfg.AddProfiles(typeof(TranslateTextProfile).Assembly); });
+            Mapper.Initialize(cfg => cfg.AddProfiles(typeof(TranslateTextProfile).Assembly));
             services.AddScoped<IMapper>(p => new Mapper(Mapper.Configuration));
             
             services.AddSwaggerGen(c =>

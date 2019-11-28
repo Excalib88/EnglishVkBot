@@ -4,7 +4,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace EnglishVkBot.Domain.Models
 {
-    public class TranslateTextDto: Entity
+    public class TranslateTextDto
     {
         [JsonProperty]
         public string Text { get; set; }
@@ -17,12 +17,6 @@ namespace EnglishVkBot.Domain.Models
         
         [JsonProperty]
         public bool IsAutoTextRecognition { get; set; }
-        
-        [JsonIgnore]
-        public virtual LanguageDirection TextDirection { get; set; }
-        
-        [JsonIgnore]
-        public virtual LanguageDirection TargetDirection { get; set; }
         
         
         public TranslateTextDto()

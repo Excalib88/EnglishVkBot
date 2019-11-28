@@ -6,7 +6,7 @@ namespace EnglishVkBot.Abstractions
 {
     public interface ITranslator
     {
-        ValueTask<string> Translate(string text, string textDirection, string targetDirection, bool isAutoTextRecognition);
+        Task<string> Translate(string text, string textDirection, string targetDirection, bool isAutoTextRecognition);
         List<string> GetLanguages();
     }
 }
