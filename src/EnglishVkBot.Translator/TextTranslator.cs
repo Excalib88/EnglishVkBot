@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EnglishVkBot.Abstractions;
 using EnglishVkBot.Abstractions.Models;
+using Microsoft.Extensions.Configuration;
 using YandexTranslateCSharpSdk;
 
 namespace EnglishVkBot.Translator
@@ -11,10 +12,15 @@ namespace EnglishVkBot.Translator
     {
         private readonly YandexTranslateSdk _translateSdk;
         private readonly List<ValueTuple<User, string>> _translatedTexts;
+        private readonly IConfiguration _configuration;
 
-        public TextTranslator(string apiKey)
+        public TextTranslator(IConfiguration configuration)
         {
-            _translateSdk = new YandexTranslateSdk {ApiKey = apiKey};
+            _translateSdk = new YandexTranslateSdk
+            {
+                ApiKey = configuration["Config:YandexAccessToken"]
+            };
+
             _translatedTexts = new List<ValueTuple<User, string>>();
         }
 

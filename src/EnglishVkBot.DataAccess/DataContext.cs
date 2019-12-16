@@ -1,5 +1,7 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
+using EnglishVkBot.Abstractions.Models;
 using EnglishVkBot.DataAccess.Entities;
 using EnglishVkBot.Domain.Models;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +16,8 @@ namespace EnglishVkBot.DataAccess
         public DataContext(DbContextOptions<DataContext> options)
             : base(options){}
 
+        public DataContext(DbContextOptions<DataContext> options, IServiceProvider serviceProvider) : base(options)
+        {}
         public async Task<int> SaveChangesAsync()
         {
             return await base.SaveChangesAsync();

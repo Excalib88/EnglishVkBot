@@ -29,8 +29,7 @@ namespace EnglishVkBot.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
-            services.AddDbContext();
-           
+            services.AddDatabase(Configuration);
             Mapper.Initialize(cfg => cfg.AddProfiles(typeof(TranslateTextProfile).Assembly));
             services.AddScoped<IMapper>(p => new Mapper(Mapper.Configuration));
 
@@ -46,7 +45,7 @@ namespace EnglishVkBot.API
         
             
             services.AddCors();
-            services.AddSingleton<ITranslator>(sp => new TextTranslator(Configuration["Config:YandexAccessToken"]));
+            services.AddSingleton<ITranslator, TextTranslator>();
 
         }
 
