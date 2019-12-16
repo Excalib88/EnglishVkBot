@@ -6,6 +6,6 @@ namespace EnglishVkBot.DataAccess.Abstractions
 {
     public interface IEntity
     {
-        Guid Id { get; set; }
+        long? Id { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace EnglishVkBot.DataAccess.Entities
 {
     public class EntityBase: IEntity
     {
-        public Guid Id { get; set; }
+        public long? Id { get; set; }
         
         public bool IsActive { get; set; }
     }

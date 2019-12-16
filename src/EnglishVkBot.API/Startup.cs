@@ -33,7 +33,7 @@ namespace EnglishVkBot.API
            
             Mapper.Initialize(cfg => cfg.AddProfiles(typeof(TranslateTextProfile).Assembly));
             services.AddScoped<IMapper>(p => new Mapper(Mapper.Configuration));
-            
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info

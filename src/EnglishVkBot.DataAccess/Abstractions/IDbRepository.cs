@@ -9,17 +9,18 @@ namespace EnglishVkBot.DataAccess.Abstractions
 {
     public interface IDbRepository 
     {
-        IQueryable<IEntity> Get(Expression<Func<IEntity, bool>> selector);
+        IQueryable<T> Get<T>(Expression<Func<T, bool>> selector) where T: class, IEntity;
+        IQueryable<T> Get<T>() where T: class, IEntity;
+        IQueryable<T> GetAll<T>() where T : class, IEntity;
 
-        Task Add(IEntity newEntity);
-        Task Add(IEnumerable<IEntity> newEntities);
+        Task<long?> Add<T>(T newEntity) where T: class, IEntity;
+        Task AddRange<T>(IEnumerable<T> newEntities) where T: class, IEntity;
 
-        Task Remove(IEntity entity);
-        Task Remove(IEnumerable<IEntity> entities);
+        Task Remove<T>(T entity) where T: class, IEntity;
+        Task Remove<T>(IEnumerable<T> entities) where T: class, IEntity;
 
-        Task<IEntity> Update(IEntity entity);
-        Task Update(IEnumerable<IEntity> entities);
+        Task Update<T>(T entity) where T: class, IEntity;
+        Task Update<T>(IEnumerable<T> entities) where T: class, IEntity;
 
-        IQueryable<IEntity> GetAll();
     }
 }

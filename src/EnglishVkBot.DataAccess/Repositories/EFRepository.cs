@@ -18,45 +18,50 @@ namespace EnglishVkBot.DataAccess.Repositories
             _context = context;
         }
 
-        public IQueryable<IEntity> Get(Expression<Func<IEntity, bool>> selector)
+        public IQueryable<T> Get<T>() where T: class, IEntity
         {
-            return _context.Set<IEntity>().Where(selector).AsQueryable();
+            return _context.Set<T>().AsQueryable();
         }
 
-        public async Task Add(IEntity newEntity)
+        public IQueryable<T> Get<T>(Expression<Func<T, bool>> selector) where T : class, IEntity
         {
-            await _context.Set<IEntity>().AddAsync(newEntity);
+            return _context.Set<T>().Where(selector).AsQueryable();
         }
 
-        public async Task Add(IEnumerable<IEntity> newEntities)
+        public async Task<long?> Add<T>(T newEntity) where T: class, IEntity
         {
-            await _context.Set<IEntity>().AddRangeAsync(newEntities);
+            var entity = await _context.Set<T>().AddAsync(newEntity);
+            return entity.Entity.Id;
         }
 
-        public async Task Remove(IEntity entity)
+        public async Task AddRange<T>(IEnumerable<T> newEntities) where T: class, IEntity
         {
-            await Task.Run(() => _context.Set<IEntity>().Remove(entity));
+            await _context.Set<T>().AddRangeAsync(newEntities);
         }
 
-        public async Task Remove(IEnumerable<IEntity> entities)
+        public async Task Remove<T>(T entity) where T: class, IEntity
         {
-            await Task.Run(() => _context.Set<IEntity>().RemoveRange(entities));
+            await Task.Run(() => _context.Set<T>().Remove(entity));
         }
 
-        public async Task<IEntity> Update(IEntity entity)
+        public async Task Remove<T>(IEnumerable<T> entities) where T: class, IEntity
         {
-            var updatedEntity = await Task.Run(() => _context.Set<IEntity>().Update(entity));
-            return updatedEntity.Entity;
+            await Task.Run(() => _context.Set<T>().RemoveRange(entities));
         }
 
-        public async Task Update(IEnumerable<IEntity> entities)
+        public async Task Update<T>(T entity) where T: class, IEntity
         {
-            await Task.Run(() => _context.Set<IEntity>().UpdateRange(entities));
+            await Task.Run(() => _context.Set<T>().Update(entity));
         }
 
-        public IQueryable<IEntity> GetAll()
+        public async Task Update<T>(IEnumerable<T> entities) where T: class, IEntity
         {
-            return _context.Set<IEntity>().AsQueryable();
+            await Task.Run(() => _context.Set<T>().UpdateRange(entities));
+        }
+
+        public IQueryable<T> GetAll<T>() where T: class, IEntity
+        {
+            return _context.Set<T>().AsQueryable();
         }
     }
 }

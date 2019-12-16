@@ -9,7 +9,7 @@ namespace EnglishVkBot.DataAccess
         public static void AddDbContext(this IServiceCollection serviceCollection)
         {
             var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
-            //serviceCollection.AddTransient<IDataContext, DataContext>(provider => new DataContext(optionsBuilder.UseDefaultPostgreSqlOptions()));
+            serviceCollection.AddTransient(provider => new DataContext(optionsBuilder.UseDefaultPostgreSqlOptions()));
             //serviceCollection.AddTransient(provider => (DataContext)provider.GetService<IDataContext>());
         }
     }

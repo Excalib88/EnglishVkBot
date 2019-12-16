@@ -2,9 +2,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using EnglishVkBot.Abstractions;
+using EnglishVkBot.DataAccess.Abstractions;
 using EnglishVkBot.DataAccess.Entities;
 using EnglishVkBot.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EnglishVkBot.API.Controllers
 {
@@ -14,11 +16,13 @@ namespace EnglishVkBot.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly ITranslator _translator;
+        private readonly IDbRepository _dbRepository;
 
-        public TranslatorController(IMapper mapper, ITranslator translator)
+        public TranslatorController(IMapper mapper, ITranslator translator, IDbRepository dbRepository)
         {
             _mapper = mapper;
             _translator = translator;
+            _dbRepository = dbRepository;
         }
 
         /// <summary>
@@ -38,11 +42,9 @@ namespace EnglishVkBot.API.Controllers
         /// </summary>
         [HttpGet]
         [Route("GetLanguageById/{directionId}")]
-        public ActionResult<LanguageDirection> GetLanguageById(int directionId)
+        public async Task<ActionResult<LanguageDirection>> GetLanguageById(int directionId)
         {
-            //var direction = _queryBus.Query<GetLanguageByIdQuery, LanguageDirection>(
-            //    new GetLanguageByIdQuery(directionId));
-            return new LanguageDirection();
+            return await _dbRepository.Get<LanguageDirection>().FirstOrDefaultAsync(x => x.Id == directionId);
         }
 
         /// <summary>
@@ -51,11 +53,9 @@ namespace EnglishVkBot.API.Controllers
         /// <param name="languageDirection"></param>
         [Route("AddLanguage/")]
         [HttpPost]
-        public ActionResult<int> AddLanguage(LanguageDirection languageDirection)
+        public async Task<ActionResult<long?>> AddLanguage(LanguageDirection languageDirection)
         {
-            //var languageDirectionId = _commandBus.Handle<CreateLanguageDirectionCommand, int>(
-            //    _mapper.Map<CreateLanguageDirectionCommand>(languageDirection));
-            return 1;//languageDirectionId;
+            return await _dbRepository.Add(languageDirection);
         }
 
         /// <summary>
@@ -64,17 +64,16 @@ namespace EnglishVkBot.API.Controllers
         /// <param name="translateTextDto"></param>
         [Route("Translate")]
         [HttpPost]
-        public ActionResult<string> Translate([FromBody]TranslateTextDto translateTextDto)
+        public async Task<ActionResult<string>> Translate([FromBody]TranslateTextDto translateTextDto)
         {
-            var textDirection = GetLanguageById(translateTextDto.TextDirectionId).Value.Direction;
-            var targetDirection = GetLanguageById(translateTextDto.TargetDirectionId).Value.Direction;
-            
-            //_commandBus.Handle<CreateTranslateTextCommand, int>(
-            //    _mapper.Map<CreateTranslateTextCommand>(translateTextDto));
-            
-            var translatedText = _translator.Translate(
-                translateTextDto.Text, textDirection, targetDirection, translateTextDto.IsAutoTextRecognition).Result;
-            return translatedText;
+            var textDirection = await GetLanguageById(translateTextDto.TextDirectionId);
+            var targetDirection = await GetLanguageById(translateTextDto.TargetDirectionId);
+
+            return await _translator.Translate(
+                translateTextDto.Text, 
+                textDirection.Value.Direction, 
+                targetDirection.Value.Direction, 
+                translateTextDto.IsAutoTextRecognition);
         }
     }
 }
