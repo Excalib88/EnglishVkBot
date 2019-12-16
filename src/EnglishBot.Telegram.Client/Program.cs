@@ -1,7 +1,12 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using EnglishVkBot.Abstractions;
+using EnglishVkBot.Abstractions.Models;
+using EnglishVkBot.Domain.Models;
+using EnglishVkBot.Translator;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.FileExtensions;
 using Microsoft.Extensions.Configuration.Json;
 using MihaZupan;
+using RestEase;
 using System;
 using System.IO;
 using Telegram.Bot;
@@ -13,17 +18,17 @@ namespace EnglishBot.Telegram.Client
     class Program
     {
         private static TelegramBotClient bot;
-
+        private static IConfiguration _configuration;
         static void Main(string[] args)
         {
-            var configuration = new ConfigurationBuilder()
+            _configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
 
-            var socksProxy = new HttpToSocks5Proxy(configuration["Proxy:Server"], int.Parse(configuration["Proxy:Port"]));
+            var socksProxy = new HttpToSocks5Proxy(_configuration["Proxy:Server"], int.Parse(_configuration["Proxy:Port"]));
 
-            bot = new TelegramBotClient(configuration["TelegramApi:Token"], socksProxy);
+            bot = new TelegramBotClient(_configuration["TelegramApi:Token"], socksProxy);
 
             StartBot();
 
@@ -42,13 +47,15 @@ namespace EnglishBot.Telegram.Client
 
             var message = e.Update.Message;
 
-            if (message?.Type == MessageType.Voice)
+            if (message?.Type == MessageType.Text)
             {
-                var text = "";
+                var api = RestClient.For<ITranslatorModel>(_configuration["TranslatorApi:BaseUrl"]);
+                var result = await api.Translate(new TranslateTextDto
+                {
+                    IsAutoTextRecognition = true, TargetDirectionId = 2, Text = message?.Text
+                });
 
-                text = text == null || text == "" ? "unrecognized" : text;
-
-                await bot.SendTextMessageAsync(message.Chat.Id, text);
+                await bot.SendTextMessageAsync(message.Chat.Id, result);
             }
         }
     }

@@ -44,7 +44,11 @@ namespace EnglishVkBot.API.Controllers
         [Route("GetLanguageById/{directionId}")]
         public async Task<ActionResult<LanguageDirection>> GetLanguageById(int directionId)
         {
-            return await _dbRepository.Get<LanguageDirection>().FirstOrDefaultAsync(x => x.Id == directionId);
+            var tempDirection = new LanguageDirection { Id = 1, Direction = "ru" };
+            var tempTargetDirection = new LanguageDirection { Id = 2, Direction = "en" };
+
+            return directionId == 1 ? tempDirection : tempTargetDirection;
+            //await _dbRepository.Get<LanguageDirection>().FirstOrDefaultAsync(x => x.Id == directionId);
         }
 
         /// <summary>

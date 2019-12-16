@@ -6,10 +6,10 @@ namespace EnglishVkBot.DataAccess.Entities
     public class LanguageDirection: EntityBase
     {
         [JsonProperty]
-        public string Name { get; private set; }
+        public string Name { get; set; }
         
         [JsonProperty]
-        public string Direction { get; private set; }
+        public string Direction { get; set; }
         
         [JsonConstructor]
         public LanguageDirection()

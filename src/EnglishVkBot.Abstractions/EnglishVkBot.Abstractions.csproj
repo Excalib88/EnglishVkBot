@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="RestEase" Version="1.4.10" />
       <PackageReference Include="YandexTranslateCoreSdk" Version="1.0.0" />
     </ItemGroup>
 
