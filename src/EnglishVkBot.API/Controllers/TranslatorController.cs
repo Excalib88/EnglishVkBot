@@ -70,13 +70,8 @@ namespace EnglishVkBot.API.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> Translate([FromBody]TranslateTextDto translateTextDto)
         {
-            var textDirection = await GetLanguageById(translateTextDto.TextDirectionId);
-            var targetDirection = await GetLanguageById(translateTextDto.TargetDirectionId);
-
             return await _translator.Translate(
                 translateTextDto.Text, 
-                textDirection.Value.Direction, 
-                targetDirection.Value.Direction, 
                 translateTextDto.IsAutoTextRecognition);
         }
     }

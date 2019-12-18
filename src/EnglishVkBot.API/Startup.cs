@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace EnglishVkBot.API
 {
@@ -74,7 +75,6 @@ namespace EnglishVkBot.API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Translator API V1");
                 c.RoutePrefix = string.Empty;
             });
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

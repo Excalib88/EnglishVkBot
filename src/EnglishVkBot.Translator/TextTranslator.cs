@@ -25,22 +25,25 @@ namespace EnglishVkBot.Translator
         }
 
         public async Task<string> Translate(
-            string text, string textDirection, string targetDirection, bool isAutoTextRecognition)
+            string text, bool isAutoTextRecognition)
         {   
             if (isAutoTextRecognition)
             {
-                var languageDetector = _translateSdk.DetectLanguage(text).Result;
+                var detectedLanguage = await _translateSdk.DetectLanguage(text);
+
+                var targetDirection = detectedLanguage == "ru" ? "en": "ru";
+
                 return await _translateSdk.TranslateText(text, 
-                    $"{languageDetector}-{targetDirection}");  
+                    $"{detectedLanguage}-{targetDirection}");  
             }
             
             return await _translateSdk.TranslateText(text, 
-                $"{textDirection}-{targetDirection}");  
+                $"{"ru"}-{"en"}");  
         }
 
-        public List<string> GetLanguages()
+        public async Task<List<string>> GetLanguages()
         {
-            return _translateSdk.GetLanguages().Result;
+            return await _translateSdk.GetLanguages();
         }
         
     }
