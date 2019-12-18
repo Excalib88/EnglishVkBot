@@ -52,17 +52,7 @@ namespace EnglishVkBot.API
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
-            serviceProvider.GetService<DataContext>().Database.Migrate();
-            
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
-            }
-            
+            //serviceProvider.GetService<DataContext>().Database.Migrate();           
             app.UseCors(b => {
                 b.AllowAnyOrigin();
                 b.AllowAnyMethod();

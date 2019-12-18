@@ -29,10 +29,10 @@ namespace EnglishBot.Telegram.Client
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
 
-            var socksProxy = new HttpToSocks5Proxy(_configuration["Proxy:Server"], int.Parse(_configuration["Proxy:Port"]));
-            bot = new TelegramBotClient(_configuration["TelegramApi:Token"], socksProxy);
+            //var socksProxy = new HttpToSocks5Proxy(_configuration["Proxy:Server"], int.Parse(_configuration["Proxy:Port"]));
+            //bot = new TelegramBotClient(_configuration["TelegramApi:Token"], socksProxy);
 
-            //bot = new TelegramBotClient(_configuration["TelegramApi:Token"]);
+            bot = new TelegramBotClient(_configuration["TelegramApi:Token"]);
             StartBot();
 
             Console.WriteLine("Telegram bot service started");
